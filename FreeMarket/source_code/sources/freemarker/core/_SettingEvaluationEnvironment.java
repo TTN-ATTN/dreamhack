@@ -1,0 +1,35 @@
+package freemarker.core;
+
+import freemarker.ext.beans.BeansWrapper;
+import freemarker.template.Configuration;
+
+/* loaded from: free-market-1.0.0.jar:BOOT-INF/lib/freemarker-2.3.33.jar:freemarker/core/_SettingEvaluationEnvironment.class */
+public class _SettingEvaluationEnvironment {
+    private static final ThreadLocal CURRENT = new ThreadLocal();
+    private BeansWrapper objectWrapper;
+
+    public static _SettingEvaluationEnvironment getCurrent() {
+        Object r = CURRENT.get();
+        if (r != null) {
+            return (_SettingEvaluationEnvironment) r;
+        }
+        return new _SettingEvaluationEnvironment();
+    }
+
+    public static _SettingEvaluationEnvironment startScope() {
+        Object previous = CURRENT.get();
+        CURRENT.set(new _SettingEvaluationEnvironment());
+        return (_SettingEvaluationEnvironment) previous;
+    }
+
+    public static void endScope(_SettingEvaluationEnvironment previous) {
+        CURRENT.set(previous);
+    }
+
+    public BeansWrapper getObjectWrapper() {
+        if (this.objectWrapper == null) {
+            this.objectWrapper = new BeansWrapper(Configuration.VERSION_2_3_21);
+        }
+        return this.objectWrapper;
+    }
+}
