@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍊 GYUL COOKIE STORE 🍪</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">    
+</head>
+<body>
+    <h1 class="shop-sign">🍊 GYUL COOKIE STORE 🍪</h1>
+    
+    <div class="box">
+        <span class="status-badge vip-status">Event Ongoing</span>
+        
+        <h2>✨ Name the New Item ✨</h2>
+        <p>Please name the freshly baked tangerine cookie!</p>
+        
+        <form action="/event" method="get">
+            <input type="text" name="msg" value="{{ cookie_name }}">
+            <button type="submit">Name it</button>
+        </form>
+
+        <hr>
+
+        {% if clean_name %}
+            <div class="success-msg">
+                <div>Submitted name:</div>
+                {{ clean_name | safe }}
+                
+                <br>
+                <form action="/send" method="get" style="margin-bottom: 0;">
+                    <input type="hidden" name="name" value="{{ cookie_name }}">
+                    <button type="submit" class="report-btn">Enter Event!</button>
+                </form>
+            </div>
+        {% else %}
+            <div class="fail-msg">
+                No name has been submitted yet.<br>
+                Please submit a great name! 🍊
+            </div>
+        {% endif %}
+    </div>
+    
+    <div style="margin-top: 20px;">
+        <a href="/" style="font-size: 1.5rem; color: #ff9800; text-decoration: none;">Back to Home</a>
+    </div>
+</body>
+</html>

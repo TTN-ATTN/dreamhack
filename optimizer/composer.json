@@ -3,5 +3,12 @@
         "spatie/image-optimizer": "1.7.2",
         "monolog/monolog": "^2.10",
         "symfony/filesystem": "^5.4"
+    },
+    "config": {
+        "audit": {
+            "ignore": [
+                "PKSA-s9kt-tq5r-6f3y"
+            ]
+        }
     }
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍊 GYUL COOKIE STORE 🍪</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1 class="shop-sign">🍊 GYUL COOKIE STORE 🍪</h1>
+
+    <div class="box">
+        <h2>Welcome! Fresh cookies have been baked.</h2>
+        
+        <p>Your membership level: 
+            {% if is_vip %}
+                <span class="status-badge vip-status">✨VIP✨</span>
+            {% else %}
+                <span class="status-badge">Regular member ({{ membership }})</span>
+            {% endif %}
+        </p>
+        
+        <hr>
+
+        {% if is_vip %}
+            <div class="success-msg">
+                🍊 VIP MENU 🍊<br>
+                FLAG: {{ flag }}
+            </div>
+        {% else %}
+            <div class="fail-msg" style="color: #ff9800;"> 
+                <p>🎉 A surprise event is currently underway! 🎉</p>
+                <h2>Please name the new menu item!</h2>
+                <a href="/event">
+                    <button type="button">Participate in the event</button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
