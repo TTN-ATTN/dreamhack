@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔄 Reset Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🍊</div>
+            <h1>Reset Request Result</h1>
+        </div>
+
+        <div class="info-box" style="white-space: pre-wrap;">
+            {{ response }}
+        </div>
+
+        <a href="/" class="btn" style="margin-top: 20px;">⤴️ Go Back</a>
+    </div>
+</body>
+</html>

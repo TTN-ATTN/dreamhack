@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍊 Tangerine Redirect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🍊</div>
+            <h1>Tangerine Redirect</h1>
+            <p class="subtitle">Fresh redirect service</p>
+        </div>
+
+        <div class="section">
+            <h2>Redirect Settings</h2>
+            <form action="/setting_re" method="get">
+                <div class="form-group">
+                    <label for="url">🔗 Destination URL</label>
+                    <input type="text" id="url" name="url" value="{{ current_url }}">
+                </div>
+                <button type="submit" class="btn">🍊 Save Settings</button>
+            </form>
+        </div>
+        <div class="section">
+            <h2>Reset Settings</h2>
+            <form action="/trigger_reset" method="get">
+                <div class="form-group">
+                    <label for="key">🔑 Enter RESET KEY</label>
+                    <input type="text" id="key" name="key" placeholder="RESET KEY">
+                </div>
+                <button type="submit" class="btn">⚠️ Execute Reset</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

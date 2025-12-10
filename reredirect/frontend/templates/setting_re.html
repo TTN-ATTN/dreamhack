@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍊 Settings Complete</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🍊</div>
+            <h1>Settings have been saved</h1>
+            <p class="subtitle">New redirect information has been applied</p>
+        </div>
+
+        <div class="info-box">
+            <p><strong>📌 Destination URL:</strong></p>
+            <p>{{ url }}</p>
+        </div>
+
+        <button class="btn" style="margin-top: 25px;"
+            onclick="copyRedirectLink()">
+            📋 Copy Redirect Link
+        </button>
+
+        <a href="/" class="btn" style="margin-top: 15px;">⤴️ Go Back</a>
+    </div>
+
+    <script>
+        function copyRedirectLink() {
+            const redirectUrl = "{{ request.host_url }}".replace(/\/+$/, "") + "/re";
+            navigator.clipboard.writeText(redirectUrl).then(() => {
+                alert("Redirect link copied:\n" + redirectUrl);
+            });
+        }
+    </script>
+</body>
+</html>
