@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page</title>
+</head>
+<body>
+    <h1>Hello</h1>
+    <div id="c"></div>
+    <script>
+        const p = new URLSearchParams(location.search).get('payload');
+        if(p) {
+            document.getElementById('c').innerHTML = p;
+        }
+        const h = location.hash.slice(1);
+        if(h) {
+            const e = document.querySelectorAll('[data-code]');
+            if(e.length > 0) {
+                const code = Array.from(e).map(el => el.getAttribute('data-code')).join(';');
+                new Function(code + ';' + h)();
+            }
+        }
+    </script>
+</body>
+</html>

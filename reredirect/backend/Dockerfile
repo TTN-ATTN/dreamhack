@@ -1,20 +1,20 @@
-# 베이스 이미지
+# Base image
 FROM python:3.12-slim
 
-# 작업 디렉토리
+# Working directory
 WORKDIR /app
 
-# 종속성 파일 복사
+# Copy dependencies file
 COPY requirements.txt .
 
-# 패키지 설치
+# Install packages
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 앱 코드 복사
+# Copy app code
 COPY . .
 
-# 81번 포트 노출
+# Expose port 80
 EXPOSE 80
 
-# Waitress로 앱 실행
+# Run app with Waitress
 CMD ["waitress-serve", "--host=0.0.0.0", "--port=80", "wsgi:application"]
