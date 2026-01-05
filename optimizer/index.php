@@ -14,12 +14,12 @@ $filename = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $counter = count(glob('uploads/*')) + 1;
-    $target_dir = $_POST['target_dir'];
+    $target_dir = $_POST['target_dir']; // user-control, use phar:// to trigger 
     $filename = $_FILES['file']['name'];
     $image_extension = pathinfo($filename, PATHINFO_EXTENSION);
     $image_type = $_FILES['file']['type'];
     $real_file_name = $counter.'.'.$image_extension;
-    $file_path = Path::join($target_dir, $real_file_name);
+    $file_path = Path::join($target_dir, $real_file_name); // source
     $optimized_file_path = Path::join('optimized', $real_file_name);
     $original_file_path = Path::join('uploads', $real_file_name);
     
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         echo "No target directory found.";
         exit(-1);
     }
-
+    # command injection filter
     if (preg_match('#^/|(\.\.)#', $original_file_path)) {
         echo "Filtered.";
         exit(-1);
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     move_uploaded_file($_FILES['file']['tmp_name'], $original_file_path);
     copy($original_file_path, $optimized_file_path);
 
-    $optimizerChain->optimize($file_path);
+    $optimizerChain->optimize($file_path); // sink
 
     $upload_success = true;
     $original_file_size = filesize($original_file_path);
